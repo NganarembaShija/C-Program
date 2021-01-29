@@ -47,3 +47,38 @@ struct node* display(int size){
         traverse=traverse->link;
     }
 }
+
+struct node* insert(int size){
+    int i,position, item, count=1;
+    struct node* traverse, *newNode, *prev;
+    traverse=start;
+    prev=traverse;
+    printf("Enter the position to insert: ");
+    scanf("%d",&position);
+    if(position>size+1){
+        printf("Enter a valid position");
+         return start;
+    }
+    printf("Enter the item to insert: ");
+    scanf("%d",&item);
+    // Creating node and inserting data 
+    newNode=(struct node*)malloc(sizeof(struct node));
+    newNode->data=item;
+    if(position==1) // When location is at starting position
+    {
+        newNode->link=start;
+        start=newNode;
+    }
+    else// When location is at other position
+    {
+        while(count!=position)
+        {
+            prev=traverse;
+            traverse=traverse->link;
+            ++count;
+        }
+        newNode->link=prev->link;
+        prev->link=newNode;
+    }
+    
+}
